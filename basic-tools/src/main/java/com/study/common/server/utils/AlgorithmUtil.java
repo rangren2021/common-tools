@@ -10,5 +10,12 @@ package com.study.common.server.utils;
 
 public class AlgorithmUtil {
 
-    
+
+
+
+
+    public static void main(String[] args) {
+
+    }
+
 }

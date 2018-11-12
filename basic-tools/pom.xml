@@ -58,11 +58,12 @@
             <artifactId>inter-center-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.xinbang.inter</groupId>-->
-            <!--<artifactId>inter-center-common</artifactId>-->
-            <!--<version>0.0.1-SNAPSHOT</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
