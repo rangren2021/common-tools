@@ -1,5 +1,11 @@
 package com.study.common.server.utils.quartz;
 
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
+
+import java.io.IOException;
+import java.text.ParseException;
+
 /**
  * @ClassName QuartzDemo
  * @Description TODO
@@ -10,5 +16,41 @@ package com.study.common.server.utils.quartz;
 
 public class QuartzDemo {
 
+    public void run() throws SchedulerException, ParseException, IOException {
+
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+
+        JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
+                .withIdentity("jobDetail1", "group1").storeDurably().withDescription("learn self").build();
+
+
+        Trigger trigger =  //new CronTriggerImpl("trigger1","group1");
+                TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(" 0/1 * * * * ?"))
+                        .withDescription("trigger description")
+                        .withIdentity("trigger1", "group1")
+                        .startNow()
+                        .forJob(jobDetail)
+                        .build();
+
+        scheduler.scheduleJob(jobDetail, trigger);
+
+        scheduler.start();
+
+        System.in.read();
+
+        scheduler.shutdown(true);
+    }
+
+    public static void main(String[] args) {
+        try {
+            new QuartzDemo().run();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

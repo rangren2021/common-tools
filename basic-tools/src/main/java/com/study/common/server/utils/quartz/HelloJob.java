@@ -15,7 +15,8 @@ public class HelloJob implements Job {
 
     public void execute(JobExecutionContext context)
             throws JobExecutionException {
-        log.info("Hello World! - " + new Date());
+//        log.info("Hello World! - " + new Date());
+        System.out.println("Hello World! - " + new Date());
     }
 
 }
