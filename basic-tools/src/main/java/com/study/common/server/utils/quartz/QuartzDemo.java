@@ -24,13 +24,12 @@ public class QuartzDemo {
                 .withIdentity("jobDetail1", "group1").storeDurably().withDescription("learn self").build();
 
 
-        Trigger trigger =  //new CronTriggerImpl("trigger1","group1");
-                TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(" 0/1 * * * * ?"))
-                        .withDescription("trigger description")
-                        .withIdentity("trigger1", "group1")
-                        .startNow()
-                        .forJob(jobDetail)
-                        .build();
+        Trigger trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(" 0/1 * * * * ?"))
+                .withDescription("trigger description")
+                .withIdentity("trigger1", "group1")
+                .startNow()
+                .forJob(jobDetail)
+                .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
 
