@@ -39,8 +39,77 @@ public class FastSort {
         if (end > en) sort(data, en + 1, end);
     }
 
+    /**
+     * 快速排序
+     *
+     *  从数列中挑出一个元素，称为“基准”
+     *  重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分割之后，
+     *  该基准是它的最后位置。这个称为分割（partition）操作。
+     *  递归地把小于基准值元素的子数列和大于基准值元素的子数列排序。
+     *
+     * @param numbers
+     * @param start
+     * @param end
+     */
+    public static void quickSort(int[] numbers, int start, int end) {
+        if (start < end) {
+            int base = numbers[start]; // 选定的基准值（第一个数值作为基准值）
+            int temp; // 记录临时中间值
+            int i = start, j = end;
+            do {
+                while ((numbers[i] < base) && (i < end))
+                    i++;
+                while ((numbers[j] > base) && (j > start))
+                    j--;
+                if (i <= j) {
+                    temp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = temp;
+                    i++;
+                    j--;
+                }
+            } while (i <= j);
+            if (start < j)
+                quickSort(numbers, start, j);
+            if (end > i)
+                quickSort(numbers, i, end);
+        }
+    }
+
+    public static void sort_m(int[] data, int start, int end) {
+        if (start < end) {
+            int i = start;
+            int j = end;
+            int sign = data[start];
+            int temp;
+            do {
+                while (data[i] < sign && i < end)
+                    i++;
+                while (data[j] > sign && j > start)
+                    j--;
+                if (i <= j) {
+                    temp = data[i];
+                    data[i] = data[j];
+                    data[j] = temp;
+                    i++;
+                    j--;
+                }
+            } while (i < j);
+            if (i < end) {
+                sort_m(data, i, end);
+            }
+            if (j > start) {
+                sort_m(data, start, j);
+            }
+        }
+
+    }
+
+
     public static void main(String[] args) {
-        sort(data, 0, data.length-1);
+//        sort(data, 0, data.length-1);
+//        quickSort(data, 0, data.length - 1);
+        sort_m(data, 0, data.length - 1);
 
         for (int item : data) {
             System.out.print(item + "  ");
