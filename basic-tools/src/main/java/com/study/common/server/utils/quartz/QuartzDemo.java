@@ -20,18 +20,33 @@ public class QuartzDemo {
 
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
-        JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
-                .withIdentity("jobDetail1", "group1").storeDurably().withDescription("learn self").build();
+//        JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
+//                .withIdentity("jobDetail1", "group1").storeDurably().withDescription("learn self").build();
+
+        for (int i = 0; i < 10; i++) {
+            JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
+                    .withIdentity("jobDetail" + i, "group1").storeDurably().withDescription("learn self").build();
 
 
-        Trigger trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(" 0/1 * * * * ?"))
-                .withDescription("trigger description")
-                .withIdentity("trigger1", "group1")
-                .startNow()
-                .forJob(jobDetail)
-                .build();
+            Trigger trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(" 0/1 * * * * ?"))
+                    .withDescription("trigger description")
+                    .withIdentity("trigger" + i, "group1")
+                    .startNow()
+                    .forJob(jobDetail)
+                    .build();
 
-        scheduler.scheduleJob(jobDetail, trigger);
+            scheduler.scheduleJob(jobDetail, trigger);
+
+        }
+
+
+//        Trigger trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(" 0/1 * * * * ?"))
+//                .withDescription("trigger description")
+//                .withIdentity("trigger1", "group1")
+//                .startNow()
+//                .forJob(jobDetail)
+//                .build();
+
 
         scheduler.start();
 
