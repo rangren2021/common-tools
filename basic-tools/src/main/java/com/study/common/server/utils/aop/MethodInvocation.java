@@ -13,9 +13,10 @@ import java.util.List;
 
 public class MethodInvocation {
 
-    List<MethodInterceptor> methodChains = new ArrayList<>();
+    private static List<MethodInterceptor> methodChains = new ArrayList<>();
 
     static{
+//        methodChains.add(MethodBefore.class);
 
     }
 

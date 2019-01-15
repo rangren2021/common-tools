@@ -20,7 +20,6 @@ public class MethodBefore implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) {
         methodBeforeAdvice.execute();
-
         return null;
     }
 }

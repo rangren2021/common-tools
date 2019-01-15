@@ -19,9 +19,10 @@ public class AopTest {
     @Test
     public void test01() {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
-        MathCalendar calendar = applicationContext.getBean(MathCalendar.class);
-        if(calendar!=null){
-            System.out.println("res:"+calendar.add(100,32));
-        }
+//        MathCalendar calendar = applicationContext.getBean(MathCalendar.class);
+//        if(calendar!=null){
+//            System.out.println("res:"+calendar.add(100,32));
+//        }
+        applicationContext.refresh();
     }
 }
