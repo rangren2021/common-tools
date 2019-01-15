@@ -1,11 +1,8 @@
 package com.study.common.server.utils;
 
-import com.study.common.server.config.Config;
-import com.study.common.server.utils.aop.demo.MathCalendar;
-import org.junit.*;
+import com.study.common.server.config.AopConfig;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @ClassName AopTest
@@ -18,11 +15,18 @@ public class AopTest {
 
     @Test
     public void test01() {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AopConfig.class);
 //        MathCalendar calendar = applicationContext.getBean(MathCalendar.class);
 //        if(calendar!=null){
 //            System.out.println("res:"+calendar.add(100,32));
 //        }
         applicationContext.refresh();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        applicationContext.close();
+
     }
 }

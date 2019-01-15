@@ -1,5 +1,6 @@
-package com.study.common.server.utils;
+package com.study.common.server.exec;
 
+import com.study.common.server.utils.DistributeLock;
 import org.apache.zookeeper.*;
 
 public class Test {
