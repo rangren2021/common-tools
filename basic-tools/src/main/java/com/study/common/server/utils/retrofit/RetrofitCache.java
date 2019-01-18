@@ -1,4 +1,4 @@
-package com.study.common.server.utils;
+package com.study.common.server.utils.retrofit;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -16,17 +16,17 @@ import java.util.concurrent.TimeUnit;
  */
 public class RetrofitCache {
 
-    private static LoadingCache<String, RetofitApi> retrofit = CacheBuilder.newBuilder()
+    private static LoadingCache<String, RetrofitApi> retrofit = CacheBuilder.newBuilder()
             .concurrencyLevel(Runtime.getRuntime().availableProcessors()).expireAfterWrite(60, TimeUnit.SECONDS)
-            .initialCapacity(10).build(new CacheLoader<String, RetofitApi>() {
+            .initialCapacity(10).build(new CacheLoader<String, RetrofitApi>() {
 
                 @Override
-                public RetofitApi load(String key) throws Exception {
+                public RetrofitApi load(String key) throws Exception {
                     return betrofitApi(key);
                 }
             });
 
-    private static RetofitApi betrofitApi(String url) {
+    private static RetrofitApi betrofitApi(String url) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(3000, TimeUnit.SECONDS);
         builder.readTimeout(3000, TimeUnit.SECONDS);
@@ -34,10 +34,10 @@ public class RetrofitCache {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(url).client(builder.build()).
                 addConverterFactory(GsonConverterFactory.create()).
                 addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
-        return retrofit.create(RetofitApi.class);
+        return retrofit.create(RetrofitApi.class);
     }
 
-    public static RetofitApi getRetrofitApi(String url) {
+    public static RetrofitApi getRetrofitApi(String url) {
         try {
             return retrofit.get(url);
         } catch (ExecutionException e) {

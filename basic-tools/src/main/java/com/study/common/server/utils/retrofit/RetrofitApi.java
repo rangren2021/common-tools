@@ -1,4 +1,4 @@
-package com.study.common.server.utils;
+package com.study.common.server.utils.retrofit;
 
 import com.xinbang.inter.common.dto.base.FunctionResponse;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 @Component
-public interface RetofitApi {
+public interface RetrofitApi {
 
     @GET
     Call<FunctionResponse> getQueryInter(@Url String url, @HeaderMap Map<String, Object> headers, @QueryMap Map<String, Object> param);
