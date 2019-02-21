@@ -3,7 +3,7 @@ package com.study.common.server.exec;
 import com.study.common.server.utils.DistributeLock;
 import org.apache.zookeeper.*;
 
-public class Test {
+public class ZookeeperTest {
     static int n = 500;
 
     public static void secskill() {
@@ -38,7 +38,7 @@ public class Test {
     public static void main(String[] args) {
         threadTest();
 
-//        InnerTest innerTest = new Test().new InnerTest();
+//        InnerTest innerTest = new ZookeeperTest().new InnerTest();
 //        ZooKeeper zk = null;
 //        try {
 //            zk = new ZooKeeper("192.168.75.129:2181", 30000, innerTest);

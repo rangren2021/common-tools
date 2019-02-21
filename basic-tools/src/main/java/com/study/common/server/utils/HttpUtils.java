@@ -1,5 +1,7 @@
 package com.study.common.server.utils;
 
+import com.study.common.server.utils.retrofit.RetrofitApi;
+import com.study.common.server.utils.retrofit.RetrofitCache;
 import com.xinbang.inter.common.dto.base.FunctionResponse;
 import retrofit2.Call;
 import retrofit2.Response;
